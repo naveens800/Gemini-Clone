@@ -12,6 +12,13 @@ const Main = () => {
     setInput,
     input,
   } = useContext(Context);
+
+  const setInputHandler = (e) => {
+    const cardParagraph = e.currentTarget.querySelector("p");
+    const pContent = cardParagraph ? cardParagraph.textContent : "";
+    setInput(pContent);
+    onSent();
+  };
   return (
     <div className="main">
       <div className="nav">
@@ -28,19 +35,19 @@ const Main = () => {
               <p>How can i help you today</p>
             </div>
             <div className="cards">
-              <div className="card">
+              <div className="card" onClick={(e) => setInputHandler(e)}>
                 <p>Suggest beautiful places to see on an upcoming road trip</p>
                 <img src={assets.compass_icon} alt="" />
               </div>
-              <div className="card">
+              <div className="card" onClick={(e) => setInputHandler(e)}>
                 <p>Breifly summarize the concept: urban planning</p>
                 <img src={assets.bulb_icon} alt="" />
               </div>
-              <div className="card">
+              <div className="card" onClick={(e) => setInputHandler(e)}>
                 <p>Brainstorm team bonding activities for our work retreat</p>
                 <img src={assets.message_icon} alt="" />
               </div>
-              <div className="card">
+              <div className="card" onClick={(e) => setInputHandler(e)}>
                 <p>Improve the reliability of the following code</p>
                 <img src={assets.code_icon} alt="" />
               </div>
@@ -78,8 +85,9 @@ const Main = () => {
             <div>
               <img src={assets.gallery_icon} alt="" />
               <img src={assets.mic_icon} alt="" />
-              {input ? <img onClick={() => onSent()} src={assets.send_icon} alt="" /> : null}
-              
+              {input ? (
+                <img onClick={() => onSent()} src={assets.send_icon} alt="" />
+              ) : null}
             </div>
           </div>
           <p className="bottom-info">
